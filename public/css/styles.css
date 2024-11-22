@@ -17,7 +17,7 @@ section {
 }
 
 section:nth-child(even) {
-  background-color: #013F59;
+  background-color: #1288cd;
   height: 110vh;
 }
 
