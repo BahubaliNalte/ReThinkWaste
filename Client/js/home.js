@@ -1,5 +1,4 @@
 //animation for homepage
-
 var heading = {};
 heading.opacityIn = [0,1];
 heading.scaleIn = [0.2, 1];

@@ -42,12 +42,6 @@
   margin-top: 30px;
 }
 
-@media screen and (min-width:769px) {
-  .swiper-container {
-    display: none;
-  }
-}
-
 .dev-container {
   display: flex;
   width: 100%;
@@ -55,28 +49,6 @@
   align-items: center;
   justify-content: space-around;
   flex-wrap: nowrap;
-}
-
-@media screen and (max-width:768px) {
-  .dev-container {
-    display: none;
-  }
-
-  #five {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-  }
-
-  #five h1 {
-    font-size: 2rem;
-    position: relative;
-    transform: none;
-  }
-
-  #logo:hover {
-    fill: #013F59;
-  }
 }
 
 .dev-card {
@@ -272,5 +244,33 @@
 
   100% {
     background-position: 0% 52%
+  }
+}
+
+@media screen and (max-width:768px) {
+  .dev-container {
+    display: none;
+  }
+
+  #five {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+
+  #five h1 {
+    font-size: 2rem;
+    position: relative;
+    transform: none;
+  }
+
+  #logo:hover {
+    fill: #013F59;
+  }
+}
+
+@media screen and (min-width:769px) {
+  .swiper-container {
+    display: none;
   }
 }

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReThinkWaste Store</title>
+  <link rel="stylesheet" href="./css/product.css">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <h1 class="right">
+      <a href="index.html" class="button">ReThinkWaste Store</a>
+    </h1>
+    <div class="search-bar search-container">
+      <input type="text" id="search-input" placeholder="Search here..." />
+      <button type="submit">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+          viewBox="0 0 16 16">
+          <path
+            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001a1 1 0 0 0 .153.154l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.85-3.85a1 1 0 0 0-.154-.153zm-5.442 1.39a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z" />
+        </svg>
+      </button>
+    </div>
+    <h5 class="home">
+      <a href="index.html" class="button">Home</a>
+    </h5>
+    <div class="left">
+      <div class="login-text" id="user"></div>
+      <div id="loginbtn">
+        <button class="login" type="submit">Admin Login</button>
+      </div>
+      <div id="logoutbtn">
+        <button class="logout" type="submit">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <!-- cart system -->
+    <div class="cart-container">
+      <h2>Your Shopping Cart</h2>
+      <div class="cart-items" id="cart-items">
+        <!-- Cart items will be added dynamically here -->
+      </div>
+      <div class="cart-total" id="cart-total">
+        <h3>Total: ₹<span id="total-price">0</span></h3>
+        <button id="buy-now" class="buy-button">Buy Now</button>
+      </div>
+      <div class="products">
+        <h2>Products</h2>
+        <div class="product" data-id="1">
+          <img src="./assets/Products/photoframe.jpg" alt="Photo">
+          <h3>photoframe</h3>
+          <p>₹200</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footerup">
+      <div class="logoleft">
+        <div class="flogo">
+          <svg viewbox="0 0 85 103" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M50 1H1V25C1 25 36.5 23.5 45.5 25C54.5 26.5 55 32 55 36C55 40 51.5504 46.0249 45.5 46H29V65H32.5L52.5 102.5H84L61.5 62.5C77.5976 55.9167 85.5 47.5 83 27.5C80.5 7.5 55 0.999994 50 1Z"
+              fill="#E7EAEE" />
+          </svg>
+        </div>
+        <span>3R ( Reduce, Reuse, Recycle ) + 1R ( ReThinkWaste ) for a better future
+        </span>
+      </div>
+      <div class="finfo">
+        <h3>Reach us</h3>
+        <div class="reach-us">
+          <p><img src="./assets/email.png" alt="email">
+            Email:ucoeproject@gmail.com</p>
+          <p><img src="./assets/smartphone.png" alt="phone">
+            Phone:+91 9999999999</p>
+          <p><img src="./assets/pin.png" alt="location">
+            Location:Mumbai</p>
+        </div>
+      </div>
+      <div class="quicklinks">
+        <ul>
+          <li>
+            <h3>Quicklinks</h3>
+          </li>
+          <li>About</li>
+          <li>F.A.Q</li>
+          <li>Terms & Conditions</li>
+          <li>Privacy Policy</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footerdown">
+      <div class="copyrights">
+        <p>
+          <script type="text/javascript">
+            document.write(new Date().getFullYear());
+          </script>&copy ReThinkWaste.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script> -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script> -->
+  <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  <!-- FireBase Auth -->
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyArnmUuPEy1oU7nboJBtOMi3MrOfKlaDa4",
+      authDomain: "rethinkwaste-722006.firebaseapp.com",
+      databaseURL: "https://rethinkwaste-722006-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "rethinkwaste-722006",
+      storageBucket: "rethinkwaste-722006.firebasestorage.app",
+      messagingSenderId: "280942212070",
+      appId: "1:280942212070:web:e403f694dde22836d71c27"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    document.getElementById("loginbtn").addEventListener('click', Googlelogin)
+    document.getElementById("logoutbtn").addEventListener('click', Logoutuser)
+
+    let provider = new firebase.auth.GoogleAuthProvider()
+
+    function Googlelogin() {
+      console.log('login button call')
+      firebase.auth().signInWithPopup(provider).then(res => {
+        console.log(res.user)
+        userdetails(res.user)
+        reloadPage()
+      }).catch(err => {
+        console.log(err)
+      })
+    }
+
+    function checkAuthState() {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          document.getElementById("loginbtn").style.display = "none"
+          document.getElementById("logoutbtn").style.display = "block"
+          userdetails(user)
+          reloadPage()
+        } else {
+          document.getElementById("loginbtn").style.display = "block"
+          document.getElementById("logoutbtn").style.display = "none"
+          document.getElementById("know-more").style.display = "none"
+          document.getElementById("checkauth1").style.display = "block"
+          document.getElementById("checkauth").style.display = "block"
+          document.getElementById("know-more1").style.display = "none"
+          document.getElementById("user").style.display = "none"
+          reloadpage()
+        }
+      })
+    }
+
+    function reloadPage() {
+      if (window.localStorage) {
+        if (!localStorage.getItem('firstLoad')) {
+          localStorage['firstLoad'] = true;
+          window.location.reload();
+        } else
+          localStorage.removeItem('firstLoad');
+      }
+    }
+
+    function userdetails(user) {
+      document.getElementById('user').innerHTML = `
+            <p> Hello!, ${user.displayName}</p>`
+    }
+
+    function Logoutuser() {
+      console.log('logout button call')
+      firebase.auth().signOut().then(() => {
+        document.getElementById("loginbtn").style.display = "block"
+        document.getElementById("logoutbtn").style.display = "none"
+
+      }).catch(err => {
+        console.log(err)
+      })
+    }
+    checkAuthState()
+  </script>
+
+  <script src="./js/product.js"></script>
+</body>
+
+</html>

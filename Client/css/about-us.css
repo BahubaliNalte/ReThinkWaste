@@ -63,26 +63,6 @@
   border-color: #2B77B5;
 }
 
-@media screen and (max-width:768px) {
-  .abt-wrapper {
-    display: none;
-  }
-
-  #three h1 {
-    top: 6%;
-    /* top: 51%; */
-    left: 0%;
-    align-content: center;
-    font-size: 2rem;
-    font-weight: 900;
-  }
-
-  .resp-abtus h2 {
-    font-size: 2.5rem;
-    color: #013F59;
-  }
-}
-
 .resp-abtus {
   width: 100%;
   height: 100vh;
@@ -148,5 +128,25 @@
 @media screen and (min-width:769px) {
   .resp-abtus {
     display: none;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .abt-wrapper {
+    display: none;
+  }
+
+  #three h1 {
+    top: 6%;
+    /* top: 51%; */
+    left: 0%;
+    align-content: center;
+    font-size: 2rem;
+    font-weight: 900;
+  }
+
+  .resp-abtus h2 {
+    font-size: 2.5rem;
+    color: #013F59;
   }
 }

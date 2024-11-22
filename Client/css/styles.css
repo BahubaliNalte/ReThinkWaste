@@ -88,6 +88,33 @@ h1 {
   transition: 0.5s ease-out;
 }
 
+#active {
+  border-bottom: 4px solid #E7EAEE;
+}
+
+#active2 {
+  border-bottom: 4px solid #CC1E4A;
+}
+
+#active3 {
+  border-bottom: 4px solid #FFC906;
+  color: #013F59;
+}
+
+#active4 {
+  border-bottom: 4px solid #2B77B5;
+}
+
+#active5 {
+  border-bottom: 4px solid #F75469;
+  color: #013F59;
+}
+
+#blue {
+  color: #013F59;
+  fill: #E7EAEE;
+}
+
 @media screen and (min-width:769px) {
   .hamburger-menu {
     display: none;
@@ -174,31 +201,4 @@ h1 {
     background-color: #F75469;
     color: #E7EAEE;
   }
-}
-
-#active {
-  border-bottom: 4px solid #E7EAEE;
-}
-
-#active2 {
-  border-bottom: 4px solid #CC1E4A;
-}
-
-#active3 {
-  border-bottom: 4px solid #FFC906;
-  color: #013F59;
-}
-
-#active4 {
-  border-bottom: 4px solid #2B77B5;
-}
-
-#active5 {
-  border-bottom: 4px solid #F75469;
-  color: #013F59;
-}
-
-#blue {
-  color: #013F59;
-  fill: #E7EAEE;
 }

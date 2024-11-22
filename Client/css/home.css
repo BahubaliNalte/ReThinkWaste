@@ -5,6 +5,15 @@
   z-index: -10;
 }
 
+/* login-text */
+.login-text {
+  margin-bottom: 5%;
+  font-size: 2rem;
+  color: #013F59;
+  font-weight: 600;
+}
+
+
 .preload {
   position: fixed;
   top: 0;
@@ -37,19 +46,6 @@
   animation: dash 2s linear alternate infinite;
 }
 
-@keyframes dash {
-  from {
-    stroke-dashoffset: 1000;
-    stroke-width: 4;
-    stroke: #E7EAEE;
-  }
-
-  to {
-    stroke-dashoffset: 0;
-    stroke-width: 4;
-    stroke: #E7EAEE;
-  }
-}
 
 .box {
   position: relative;
@@ -107,21 +103,6 @@
 
 .right img {
   width: 1000px;
-}
-
-@media screen and (max-width:768px) {
-  #one {
-    background: #E7EAEE;
-  }
-
-  #one .right {
-    display: none;
-  }
-
-  #one .left {
-    width: 100%;
-    overflow-x: hidden;
-  }
 }
 
 /*text animation styles */
@@ -258,10 +239,31 @@
   }
 }
 
-/* login-text */
-.login-text {
-  margin-bottom: 5%;
-  font-size: 2rem;
-  color: #013F59;
-  font-weight: 600;
+@keyframes dash {
+  from {
+    stroke-dashoffset: 1000;
+    stroke-width: 4;
+    stroke: #E7EAEE;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+    stroke-width: 4;
+    stroke: #E7EAEE;
+  }
+}
+
+@media screen and (max-width:768px) {
+  #one {
+    background: #E7EAEE;
+  }
+
+  #one .right {
+    display: none;
+  }
+
+  #one .left {
+    width: 100%;
+    overflow-x: hidden;
+  }
 }

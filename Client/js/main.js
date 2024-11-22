@@ -98,34 +98,4 @@ const preLoad=anime({
 
 
 
-//   //drop off popup
-//   function openForm() {
-//     document.getElementById("myForm").style.display = "block";
-//   }
-  
-//   function closeForm() {
-//     document.getElementById("myForm").style.display = "none";
-//   }
-//   window.onscroll = () => {
-//     document.getElementById("myForm").style.display = "none";
-// }
-//   map.fitBounds(bounds);	
-//   var myBlurFunction = function(state) {
-//       /* state can be 1 or 0 */
-//       var containerElement = document.getElementById('main_container');
-//       var overlayEle = document.getElementById('overlay');
-  
-//       if (state) {
-//           overlayEle.style.display = 'block';
-//           containerElement.setAttribute('class', 'blur');
-//       } else {
-//           overlayEle.style.display = 'none';
-//           containerElement.setAttribute('class', null);
-//       }
-//   };
-
-
-
-
-
 

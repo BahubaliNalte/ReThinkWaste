@@ -1,13 +1,13 @@
 // Data for the products
 const products = [
-    { id: 1, name: 'Glasses', price: 300, image: './Store Items/glasses.webp' },
-    { id: 2, name: 'Bag', price: 250, image: './Store Items/Bag.webp' },
-    { id: 3, name: 'Key Stand', price: 70, image: './Store Items/keys.webp' },
-    { id: 4, name: 'PhotoFrame', price: 200, image: './Store Items/photoframe.jpg' },
-    { id: 5, name: 'Bag', price: 350, image: './Store Items/bag.jpg' },
+    { id: 1, name: 'Glasses', price: 300, image: './assets/products/glasses.webp' },
+    { id: 2, name: 'Bag', price: 250, image: './assets/products/Bag.webp' },
+    { id: 3, name: 'Key Stand', price: 70, image: './assets/products/keys.webp' },
+    { id: 4, name: 'PhotoFrame', price: 200, image: './assets/products/photoframe.jpg' },
+    { id: 5, name: 'Bag', price: 350, image: './assets/products/bag.jpg' },
 ];
 
-// Cart array to store items
+// Cart array to ./assets/products
 let cart = [];
 
 // Select DOM elements
@@ -59,7 +59,7 @@ function removeFromCart(productId) {
 
 // Function to filter products based on the search term
 function searchProducts(query) {
-    const filteredProducts = products.filter(product => 
+    const filteredProducts = products.filter(product =>
         product.name.toLowerCase().includes(query.toLowerCase())
     );
     displayProducts(filteredProducts);

@@ -16,12 +16,6 @@
   z-index: 10;
 }
 
-@media screen and (max-width:768px) {
-  .lobox {
-    display: none;
-  }
-}
-
 h1 {
   text-align: center;
   margin-top: 10px;
@@ -149,5 +143,11 @@ p {
 @media all and (min-width: 1080px) {
   .schedule-pickup-form {
     width: 30%;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .lobox {
+    display: none;
   }
 }
