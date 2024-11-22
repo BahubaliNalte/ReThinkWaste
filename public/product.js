@@ -119,3 +119,25 @@ searchInput.addEventListener('input', (e) => {
 
 // Display all products initially
 displayProducts(products);
+
+
+// Select the Buy Now button
+const buyNowButton = document.getElementById('buy-now');
+
+// Function to handle the Buy Now button click
+function buyNow() {
+    if (cart.length === 0) {
+        alert('Your cart is empty. Add some items before checking out!');
+        return;
+    }
+
+    // Display a confirmation message
+    alert('Thank you for your purchase! Your order has been placed.');
+
+    // Clear the cart
+    cart = [];
+    updateCart();
+}
+
+// Event listener for the Buy Now button
+buyNowButton.addEventListener('click', buyNow);
