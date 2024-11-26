@@ -27,15 +27,6 @@
     <h5 class="home">
       <a href="index.html" class="button">Home</a>
     </h5>
-    <div class="left">
-      <div class="login-text" id="user"></div>
-      <div id="loginbtn">
-        <button class="login" type="submit">Admin Login</button>
-      </div>
-      <div id="logoutbtn">
-        <button class="logout" type="submit">Logout</button>
-      </div>
-    </div>
   </header>
 
   <section>
@@ -60,6 +51,23 @@
       </div>
     </div>
   </section>
+
+  <!-- Upload  Photos -->
+  <div class="upload-container">
+    <h1>Upload Your Photo/Video with the Product</h1>
+    <p>Share your experience with others!</p>
+    
+    <!-- File Input -->
+    <input type="file" id="file-input" accept="image/*, video/*" />
+    
+    <!-- Preview Area -->
+    <div id="preview-container">
+        <p id="placeholder-text">No file selected yet. Your preview will appear here.</p>
+    </div>
+
+    <!-- Upload Button -->
+    <button id="upload-button">Upload</button>
+</div>
 
   <!-- Footer Section -->
   <footer>

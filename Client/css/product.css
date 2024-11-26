@@ -633,3 +633,67 @@ footer {
   }
 }
 
+
+/* upload images */
+.upload-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #555;
+}
+
+#file-input {
+  margin: 20px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
+  font-size: 16px;
+}
+
+#preview-container {
+  margin: 20px 0;
+  padding: 10px;
+  border: 1px dashed #ddd;
+  border-radius: 5px;
+  background: #fafafa;
+  text-align: center;
+}
+
+#preview-container img, #preview-container video {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+#placeholder-text {
+  color: #888;
+}
+
+#upload-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+#upload-button:hover {
+  background-color: #0056b3;
+}

@@ -141,3 +141,60 @@ function buyNow() {
 
 // Event listener for the Buy Now button
 buyNowButton.addEventListener('click', buyNow);
+
+// Select DOM elements
+const fileInput = document.getElementById('file-input');
+const previewContainer = document.getElementById('preview-container');
+const placeholderText = document.getElementById('placeholder-text');
+const uploadButton = document.getElementById('upload-button');
+
+// Handle file selection
+fileInput.addEventListener('change', () => {
+    const file = fileInput.files[0];
+
+    // Clear previous preview
+    previewContainer.innerHTML = '';
+
+    // Check if a file is selected
+    if (!file) {
+        placeholderText.style.display = 'block';
+        return;
+    }
+
+    // Hide placeholder text
+    placeholderText.style.display = 'none';
+
+    // Check if the file is an image or video
+    const fileType = file.type;
+    if (fileType.startsWith('image/')) {
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        img.alt = 'Preview of uploaded image';
+        previewContainer.appendChild(img);
+    } else if (fileType.startsWith('video/')) {
+        const video = document.createElement('video');
+        video.src = URL.createObjectURL(file);
+        video.controls = true;
+        video.alt = 'Preview of uploaded video';
+        previewContainer.appendChild(video);
+    } else {
+        placeholderText.style.display = 'block';
+        placeholderText.textContent = 'Unsupported file type.';
+    }
+});
+
+// Handle upload button click
+uploadButton.addEventListener('click', () => {
+    if (!fileInput.files.length) {
+        alert('Please select a file to upload.');
+        return;
+    }
+
+    // Simulate an upload process
+    alert('File uploaded successfully!');
+    console.log('File uploaded:', fileInput.files[0]);
+
+    // Clear the input and preview after upload
+    fileInput.value = '';
+    previewContainer.innerHTML = '<p id="placeholder-text">No file selected yet. Your preview will appear here.</p>';
+});
