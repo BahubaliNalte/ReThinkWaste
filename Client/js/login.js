@@ -39,7 +39,7 @@ document.getElementById('login-button').addEventListener('click', () => {
     if (user) {
         if (user.role === 'admin') {
             alert('Welcome Admin! Redirecting to Admin Dashboard...');
-            window.location.href = 'product.html'; // Admin Dashboard
+            window.location.href = 'admin.html'; // Admin Dashboard
         } else {
             alert('Welcome Customer! Redirecting to Customer Dashboard...');
             window.location.href = 'index.html'; // Customer Dashboard
