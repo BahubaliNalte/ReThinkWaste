@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <header class="navbar">
+      <h1 class="right">
+        <a href="/user" style="color: aliceblue;" class="button">ReThinkWaste Store</a>
+      </h1>
+      <h5 class="home">
+        <a href="/user" class="button">Home</a>
+        <a href="/api/auth/logout">Logout</a>
+      </h5>
+    </header>
+
+    <div class="admin-container">
+      <h2>Admin Dashboard</h2>
+
+      <div class="product-management">
+        <h3>Manage Products</h3>
+        <button id="add-product-button" class="button">Add New Product</button>
+
+        <!-- Product List -->
+        <div class="product-list" id="product-list">
+          <!-- Products will be dynamically listed here -->
+        </div>
+      </div>
+
+      <div class="cart-management">
+        <h3>Manage Cart</h3>
+        <div id="cart-items-list">
+          <!-- Cart items will be listed here -->
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

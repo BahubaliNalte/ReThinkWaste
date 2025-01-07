@@ -1,0 +1,445 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:99vw;
+    height:10vh;
+    background-color:black;
+    color: white;
+}
+
+/* Buttons */
+button {
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: bold;
+}
+
+/* Login button */
+.login {
+  background-color: #28a745;
+  color: white;
+}
+
+.login:hover {
+  background-color: #218488;
+}
+
+/* Logout button */
+.logout {
+  background-color: #3538dc;
+  color: white;
+}
+
+.logout:hover {
+  background-color: #fc2439;
+}
+
+/* Search bar container */
+.search-bar {
+  display: flex;
+  align-items: center;
+  width: 500px;
+  margin: 20px auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Input field */
+.search-bar input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  outline: none;
+}
+
+/* Search button */
+.search-bar button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+  background-color: #0056b3;
+}
+
+/* SVG icon inside the button */
+.search-bar button svg {
+  fill: currentColor;
+}
+
+.cart-container {
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-items {
+  margin-bottom: 20px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.cart-item .info {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.cart-item button {
+  background-color: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.product {
+  background-color: #fff;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  width: 200px;
+}
+
+.product img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.add-to-cart {
+  background-color: green;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.cart-total {
+  font-weight: bold;
+}
+
+footer {
+  width: 100%;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background: #013F59;
+}
+
+.footerup {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footerdown {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logoleft {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logoleft span {
+  font-size: 0.8rem;
+  color: #E7EAEE;
+  font-weight: bold;
+}
+
+.flogo {
+  width: 50px;
+  border: 4px solid #E7EAEE;
+  padding: 10px;
+  margin: 10px;
+}
+
+.finfo {
+  width: 25%;
+  color: #E7EAEE;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* align-items: center; */
+  text-align: left;
+}
+
+.finfo h3 {
+  font-size: 1rem;
+}
+
+.finfo h3:after {
+  content: "";
+  /* This is necessary for the pseudo element to work. */
+  display: block;
+  /* This will put the pseudo element on its own line. */
+  margin: 0;
+  /* This will center the border. */
+  width: 30%;
+  /* Change this to whatever width you want. */
+  padding-top: 2px;
+  /* This creates some space between the element and the border. */
+  border-bottom: 3px solid #FFC906;
+}
+
+.reach-us {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.reach-us p {
+  font-size: 0.5rem;
+  padding: 5px;
+}
+
+.reach-us img {
+  vertical-align: text-bottom;
+}
+
+.quicklinks {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quicklinks li {
+  text-decoration: none;
+  color: #E7EAEE;
+  font-size: 0.7rem;
+  list-style: none;
+  text-align: left;
+}
+
+.quicklinks h3 {
+  font-size: 1rem;
+  margin-bottom: 2px;
+}
+
+.quicklinks h3:after {
+  content: "";
+  /* This is necessary for the pseudo element to work. */
+  display: block;
+  /* This will put the pseudo element on its own line. */
+  margin: 0;
+  /* This will center the border. */
+  width: 100%;
+  /* Change this to whatever width you want. */
+  padding-top: 2px;
+  /* This creates some space between the element and the border. */
+  border-bottom: 3px solid #F75469;
+}
+
+.footerdown {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #E7EAEE;
+  font-size: 0.7rem;
+}
+
+.home a{
+  color: white;
+  padding-right: 90px;
+  font-size: medium;
+}
+
+.right a{
+  color: white;
+  text-decoration: none;
+}
+
+.buy-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.buy-button:hover {
+  background-color: #0056b3;
+}
+
+@-webkit-keyframes gradient-anim {
+  0% {
+    background-position: 0% 52%
+  }
+
+  50% {
+    background-position: 100% 49%
+  }
+
+  100% {
+    background-position: 0% 52%
+  }
+}
+
+@-moz-keyframes gradient-anim {
+  0% {
+    background-position: 0% 52%
+  }
+
+  50% {
+    background-position: 100% 49%
+  }
+
+  100% {
+    background-position: 0% 52%
+  }
+}
+
+@-o-keyframes gradient-anim {
+  0% {
+    background-position: 0% 52%
+  }
+
+  50% {
+    background-position: 100% 49%
+  }
+
+  100% {
+    background-position: 0% 52%
+  }
+}
+
+@keyframes gradient-anim {
+  0% {
+    background-position: 0% 52%
+  }
+
+  50% {
+    background-position: 100% 49%
+  }
+
+  100% {
+    background-position: 0% 52%
+  }
+}
+
+/* upload images */
+.upload-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #555;
+}
+
+#file-input {
+  margin: 20px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
+  font-size: 16px;
+}
+
+#preview-container {
+  margin: 20px 0;
+  padding: 10px;
+  border: 1px dashed #ddd;
+  border-radius: 5px;
+  background: #fafafa;
+  text-align: center;
+}
+
+#preview-container img, #preview-container video {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+#placeholder-text {
+  color: #888;
+}
+
+#upload-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+#upload-button:hover {
+  background-color: #0056b3;
+}
