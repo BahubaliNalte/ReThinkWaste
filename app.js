@@ -16,11 +16,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true })); // To handle form data
 app.use(express.json()); // For JSON handling
 app.use(cookieParser());
-app.use(session({
-  secret: 'your-secret-key', // Change this to a more secure secret
-  resave: false,
-  saveUninitialized: true
-}));
+
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
