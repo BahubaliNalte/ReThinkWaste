@@ -1,12 +1,14 @@
 require('dotenv').config();
 const express = require("express");
-const session = require('express-session');
 const cors = require("cors");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/auth.routes");
 const jwt = require('jsonwebtoken');
+const bodyParser = require('body-parser');
+const Pickup = require("./models/pickup.models");
+const session = require('express-session');
 const { error } = require('console');
 
 
@@ -16,7 +18,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true })); // To handle form data
 app.use(express.json()); // For JSON handling
 app.use(cookieParser());
-
+app.use(bodyParser.json());
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -25,8 +27,32 @@ connectDB();
 
 
 
+// pickup Route
+app.post('/api/pickup', async (req, res) => {
+  try {
+    const { name, email, phone, datePickup, timePickup, addressPickup, extraNotes, wasteType, quantity } = req.body;
 
+    // Create a new Pickup entry
+    const newPickup = new Pickup({
+      name,
+      email,
+      phone,
+      datePickup,
+      timePickup,
+      addressPickup,
+      extraNotes,
+      wasteType,
+      quantity,
+    });
 
+    // Save to database
+    await newPickup.save();
+    res.status(201).json({ message: 'Pickup scheduled successfully', pickup: newPickup });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error', error });
+  }
+});
 
 // Routes
 app.use("/api/auth", authRoutes);
@@ -51,12 +77,12 @@ app.get("/login", (req, res) => {
 
 // Products page route
 app.get('/products', async (req, res) => {
-     res.render('products', { error:null }); 
- });
+  res.render('products', { error: null });
+});
 
 // Pickup page Route
 app.get('/pickup', async (req, res) => {
-  res.render('pickup', { error:null }); 
+  res.render('pickup', { error: null });
 });
 
 // User dashboard route
