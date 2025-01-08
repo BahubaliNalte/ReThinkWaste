@@ -24,27 +24,50 @@ app.use(bodyParser.json());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+// Serve static files
+app.use(express.static(path.join(__dirname, "public")));
+
 connectDB();
 
-// contactus Route
-app.post('/api/contact', async (req, res) => {
-  try {
-      const { name, email, message } = req.body;
 
-      // Create a new Contact entry
-      const newContact = new Contact({
-          name,
-          email,
-          message,
-      });
+// Routes
+app.use("/api/auth", authRoutes);
 
-      // Save to database
-      await newContact.save();
-      res.status(201).json({ message: 'Contact form submitted successfully', contact: newContact });
-  } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Server error', error });
-  }
+// Home Route
+app.get("/", (req, res) => {
+  res.render("login", { error: null });
+});
+
+// Register page route
+app.get("/register", (req, res) => {
+  res.render("register", { error: null });
+});
+
+//login page route
+app.get("/login", (req, res) => {
+  res.render("login", { error: null });
+});
+
+// User dashboard route
+app.get("/user", (req, res) => {
+  const token = req.cookies.token;
+  if (!token) return res.redirect("/login");
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) return res.redirect("/login");
+    res.render("userDashboard", { user: decoded });
+  });
+});
+
+// Admin dashboard route
+app.get("/admin", (req, res) => {
+  const token = req.cookies.token;
+  if (!token) return res.redirect("/login");
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err || decoded.role !== "admin") return res.redirect("/login");
+    res.render("adminDashboard", { user: decoded });
+  });
 });
 
 // pickup Route
@@ -74,60 +97,26 @@ app.post('/api/pickup', async (req, res) => {
   }
 });
 
-// Routes
-app.use("/api/auth", authRoutes);
+// contactus Route
+app.post('/api/contact', async (req, res) => {
+  try {
+    const { name, email, message } = req.body;
 
-// Serve static files
-app.use(express.static(path.join(__dirname, "public")));
+    // Create a new Contact entry
+    const newContact = new Contact({
+      name,
+      email,
+      message,
+    });
 
-// Home Route
-app.get("/", (req, res) => {
-  res.render("login", { error: null });
+    // Save to database
+    await newContact.save();
+    res.status(201).json({ message: 'Contact form submitted successfully', contact: newContact });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error', error });
+  }
 });
-
-// Register page route
-app.get("/register", (req, res) => {
-  res.render("register", { error: null });
-});
-
-//login page route
-app.get("/login", (req, res) => {
-  res.render("login", { error: null });
-});
-
-// Products page route
-app.get('/products', async (req, res) => {
-  res.render('products', { error: null });
-});
-
-// Pickup page Route
-app.get('/pickup', async (req, res) => {
-  res.render('pickup', { error: null });
-});
-
-// User dashboard route
-app.get("/user", (req, res) => {
-  const token = req.cookies.token;
-  if (!token) return res.redirect("/login");
-
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err) return res.redirect("/login");
-    res.render("userDashboard", { user: decoded });
-  });
-});
-
-// Admin dashboard route
-app.get("/admin", (req, res) => {
-  const token = req.cookies.token;
-  if (!token) return res.redirect("/login");
-
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err || decoded.role !== "admin") return res.redirect("/login");
-    res.render("adminDashboard", { user: decoded });
-  });
-});
-
-
 
 
 // Start the server
