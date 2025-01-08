@@ -8,6 +8,7 @@ const authRoutes = require("./routes/auth.routes");
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 const Pickup = require("./models/pickup.models");
+const Contact = require("./models/contactus.models");
 const session = require('express-session');
 const { error } = require('console');
 
@@ -25,7 +26,26 @@ app.set("views", path.join(__dirname, "views"));
 
 connectDB();
 
+// contactus Route
+app.post('/api/contact', async (req, res) => {
+  try {
+      const { name, email, message } = req.body;
 
+      // Create a new Contact entry
+      const newContact = new Contact({
+          name,
+          email,
+          message,
+      });
+
+      // Save to database
+      await newContact.save();
+      res.status(201).json({ message: 'Contact form submitted successfully', contact: newContact });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error', error });
+  }
+});
 
 // pickup Route
 app.post('/api/pickup', async (req, res) => {
