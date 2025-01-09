@@ -37,11 +37,29 @@
         </tbody>
       </table>
     </div>
+    <div class="order-list">
+      <h2>Orders</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Payment</th>
+            <th>Cart</th>
+          </tr>
+        </thead>
+        <tbody id="orderTableBody">
+          <!-- Orders will be rendered here -->
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
       await loadProducts();
+      await loadOrders();
 
       document.getElementById('productForm').addEventListener('submit', async function(event) {
         event.preventDefault();
@@ -92,6 +110,29 @@
         });
       } catch (error) {
         console.error('Error loading products:', error);
+      }
+    }
+
+    async function loadOrders() {
+      try {
+        const response = await fetch('/api/orders');
+        const orders = await response.json();
+        const orderTableBody = document.getElementById('orderTableBody');
+        orderTableBody.innerHTML = '';
+
+        orders.forEach(order => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${order.name}</td>
+            <td>${order.address}</td>
+            <td>${order.phone}</td>
+            <td>${order.payment}</td>
+            <td>${order.cart.map(item => `Product ID: ${item.productId}, Quantity: ${item.quantity}`).join('<br>')}</td>
+          `;
+          orderTableBody.appendChild(row);
+        });
+      } catch (error) {
+        console.error('Error loading orders:', error);
       }
     }
 

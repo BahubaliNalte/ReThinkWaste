@@ -5,6 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Products</title>
   <link rel="stylesheet" href="/css/products.css">
+  <style>
+    /* Modal styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto; /* 15% from the top and centered */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%; /* Could be more or less, depending on screen size */
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -20,11 +57,11 @@
       <div id="products">
         <!-- Products will be rendered here -->
         <% products.forEach(product => { %>
-          <div class="product-item">
+          <div class="product-item" data-name="<%= product.name.toLowerCase() %>">
             <h3><%= product.name %></h3>
             <p>Price: $<%= product.price %></p>
             <p><%= product.description %></p>
-            <button onclick="addToCart('<%= product._id %>')">Add to Cart</button>
+            <button onclick="addToCart('<%= product._id %>', '<%= product.name %>', '<%= product.price %>')">Add to Cart</button>
           </div>
         <% }) %>
       </div>
@@ -36,6 +73,7 @@
       <div id="cart">
         <!-- Cart items will be rendered here -->
       </div>
+      <button id="buyButton" onclick="openBuyPopup()" style="display: none;">Buy</button>
     </div>
 
     <!-- Upload Section -->
@@ -60,12 +98,44 @@
     </div>
   </div>
 
+  <!-- Buy Popup -->
+  <div id="buyPopup" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeBuyPopup()">&times;</span>
+      <h2>Enter Your Details</h2>
+      <form id="buyForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone" required>
+        <label for="payment">Payment Method:</label>
+        <select id="payment" name="payment" required>
+          <option value="credit_card">Credit Card</option>
+          <option value="debit_card">Debit Card</option>
+          <option value="paypal">PayPal</option>
+          <option value="cash_on_delivery">Cash on Delivery</option>
+        </select>
+        <button type="button" onclick="buyNow()">Buy Now</button>
+      </form>
+    </div>
+  </div>
+
   <script>
     // Function to handle search
     function searchProducts() {
-      const query = document.getElementById('search').value;
-      // Implement search functionality here
-      console.log('Searching for:', query);
+      const query = document.getElementById('search').value.toLowerCase();
+      const products = document.querySelectorAll('.product-item');
+
+      products.forEach(product => {
+        const name = product.getAttribute('data-name');
+        if (name.includes(query)) {
+          product.style.display = 'block';
+        } else {
+          product.style.display = 'none';
+        }
+      });
     }
 
     // Function to handle file upload
@@ -108,9 +178,82 @@
     }
 
     // Function to add product to cart
-    function addToCart(productId) {
-      // Implement add to cart functionality here
-      console.log('Adding product to cart:', productId);
+    function addToCart(productId, productName, productPrice) {
+      const cart = document.getElementById('cart');
+      const cartItem = document.createElement('div');
+      cartItem.className = 'cart-item';
+      cartItem.setAttribute('data-id', productId);
+      cartItem.innerHTML = `
+        <h3>${productName}</h3>
+        <p>Price: $${productPrice}</p>
+        <label for="quantity-${productId}">Quantity:</label>
+        <input type="number" id="quantity-${productId}" name="quantity" min="1" value="1">
+        <button onclick="removeFromCart('${productId}')">Remove</button>
+      `;
+      cart.appendChild(cartItem);
+      document.getElementById('buyButton').style.display = 'block';
+    }
+
+    // Function to remove product from cart
+    function removeFromCart(productId) {
+      const cartItem = document.querySelector(`.cart-item[data-id='${productId}']`);
+      if (cartItem) {
+        cartItem.remove();
+      }
+      if (document.querySelectorAll('.cart-item').length === 0) {
+        document.getElementById('buyButton').style.display = 'none';
+      }
+    }
+
+    // Function to open buy popup
+    function openBuyPopup() {
+      document.getElementById('buyPopup').style.display = 'block';
+    }
+
+    // Function to close buy popup
+    function closeBuyPopup() {
+      document.getElementById('buyPopup').style.display = 'none';
+    }
+
+    // Function to handle buying items
+    function buyNow() {
+      const cartItems = document.querySelectorAll('.cart-item');
+      const cart = [];
+
+      cartItems.forEach(item => {
+        const productId = item.getAttribute('data-id');
+        const quantity = item.querySelector('input[name="quantity"]').value;
+        cart.push({ productId, quantity });
+      });
+
+      const name = document.getElementById('name').value;
+      const address = document.getElementById('address').value;
+      const phone = document.getElementById('phone').value;
+      const payment = document.getElementById('payment').value;
+
+      // Send cart data and user details to the server
+      fetch('/api/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ cart, name, address, phone, payment })
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert('Order placed successfully!');
+        document.getElementById('cart').innerHTML = '';
+        document.getElementById('buyButton').style.display = 'none';
+        closeBuyPopup();
+        // Reload the admin dashboard to reflect the new order
+        fetch('/admin/reload-orders', {
+          method: 'POST'
+        });
+      })
+      .catch(error => {
+        console.error('Error placing order:', error);
+        alert('An error occurred. Please try again.');
+      });
     }
   </script>
 </body>

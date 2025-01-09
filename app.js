@@ -16,6 +16,7 @@ const session = require('express-session');
 const { error } = require('console');
 const Product = require('./models/product.models');
 const File = require('./models/file.models');
+const orderRoutes = require('./routes/order.routes');
 
 const app = express();
 
@@ -39,6 +40,7 @@ connectDB();
 // Routes
 app.use("/api/auth", authRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
 
 // Home Route
 app.get("/", (req, res) => {
