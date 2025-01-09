@@ -78,7 +78,28 @@ body {
   background-color: #218838;
 }
 
-/* Product Section Styles */
+/* Button Styles */
+button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+.product-section {
+  margin-bottom: 20px;
+  background-size: 56.57px 56.57px;
+  padding: 20px;
+  background-color: #f0f8ff; /* AliceBlue background color */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 .product-section {
   margin-bottom: 20px;
 }
@@ -123,6 +144,13 @@ body {
 /* Cart Section Styles */
 .cart-section {
   margin-bottom: 20px;
+  background-color: #f9f9f9; /* Light grey background */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.cart-section {
+  margin-bottom: 20px;
 }
 
 .cart-section h2 {
@@ -163,6 +191,43 @@ body {
 }
 
 /* Upload Section Styles */
+.upload-section {
+  margin-bottom: 20px;
+  background-color: #e0f7fa; /* Light cyan background */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.upload-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #00796b; /* Dark cyan text color */
+}
+
+#uploadForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#fileInput {
+  margin-bottom: 10px;
+}
+
+#uploadForm button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #00796b; /* Dark cyan background */
+  color: #fff;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#uploadForm button:hover {
+  background-color: #004d40; /* Darker cyan on hover */
+}
 .upload-section {
   margin-bottom: 20px;
 }
