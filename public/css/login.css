@@ -7,8 +7,8 @@
 
 /* Body Styling */
 body {
-  font-family: Arial, sans-serif;
-  background: #f2f2f2;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,7 +42,7 @@ form {
 }
 
 input {
-  padding: 10px;
+  padding: 12px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -52,8 +52,8 @@ input {
 }
 
 input:focus {
-  border-color: #0066cc;
-  box-shadow: 0 0 8px rgba(0, 102, 204, 0.2);
+  border-color: #9b59b6;
+  box-shadow: 0 0 8px rgba(155, 89, 182, 0.2);
 }
 
 /* Button Styling */
@@ -61,7 +61,7 @@ button {
   padding: 12px;
   border: none;
   border-radius: 5px;
-  background-color: #0066cc;
+  background-color: #9b59b6;
   color: white;
   font-size: 16px;
   cursor: pointer;
@@ -69,7 +69,7 @@ button {
 }
 
 button:hover {
-  background-color: #005bb5;
+  background-color: #8e44ad;
 }
 
 /* Error Message */
@@ -87,12 +87,10 @@ p {
 }
 
 p a {
-  color: #0066cc;
+  color: #9b59b6;
   text-decoration: none;
 }
 
 p a:hover {
   text-decoration: underline;
 }
-
-

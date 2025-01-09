@@ -5,9 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Products</title>
   <link rel="stylesheet" href="/css/products.css">
-   
-</head>
+ </head>
 <body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <h1><a href="/user">ReThinkWaste Store</a></h1>
+     <button class="logout" type="submit">
+      <a href="/api/auth/logout">Logout</a></button>
+  </div>
+
   <div class="container">
     <!-- Search Bar -->
     <div class="search-bar">
@@ -22,6 +28,7 @@
         <!-- Products will be rendered here -->
         <% products.forEach(product => { %>
           <div class="product-item" data-name="<%= product.name.toLowerCase() %>">
+            <img src="<%= product.imageUrl %>" alt="<%= product.name %>">
             <h3><%= product.name %></h3>
             <p>Price: $<%= product.price %></p>
             <p><%= product.description %></p>
