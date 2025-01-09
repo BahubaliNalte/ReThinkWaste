@@ -5,21 +5,27 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/auth.routes");
+const productRoutes = require('./routes/product.routes');
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 const Pickup = require("./models/pickup.models");
 const Contact = require("./models/contactus.models");
 const session = require('express-session');
 const { error } = require('console');
-
+const Product = require('./models/product.models');
+const File = require('./models/file.models');
 
 const app = express();
+
 // Middleware setup
 app.use(cors());
 app.use(express.urlencoded({ extended: true })); // To handle form data
 app.use(express.json()); // For JSON handling
 app.use(cookieParser());
 app.use(bodyParser.json());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -27,11 +33,12 @@ app.set("views", path.join(__dirname, "views"));
 // Serve static files
 app.use(express.static(path.join(__dirname, "public")));
 
+// Connect to MongoDB
 connectDB();
-
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use('/api/products', productRoutes);
 
 // Home Route
 app.get("/", (req, res) => {
@@ -43,7 +50,7 @@ app.get("/register", (req, res) => {
   res.render("register", { error: null });
 });
 
-//login page route
+// Login page route
 app.get("/login", (req, res) => {
   res.render("login", { error: null });
 });
@@ -61,16 +68,22 @@ app.get("/user", (req, res) => {
 
 // Admin dashboard route
 app.get("/admin", (req, res) => {
-  const token = req.cookies.token;
-  if (!token) return res.redirect("/login");
-
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err || decoded.role !== "admin") return res.redirect("/login");
-    res.render("adminDashboard", { user: decoded });
-  });
+  res.render('adminDashboard');
 });
 
-// pickup Route
+// Route to render products page
+app.get('/products', async (req, res) => {
+  const files = await File.find();
+  const products = await Product.find(); // Fetch products from the database
+  res.render('products', { files, products }); // Pass products to the template
+});
+
+// Route to render pickup page
+app.get('/pickup', (req, res) => {
+  res.render('pickup');
+});
+
+// Pickup Route
 app.post('/api/pickup', async (req, res) => {
   try {
     const { name, email, phone, datePickup, timePickup, addressPickup, extraNotes, wasteType, quantity } = req.body;
@@ -97,7 +110,7 @@ app.post('/api/pickup', async (req, res) => {
   }
 });
 
-// contactus Route
+// Contact us Route
 app.post('/api/contact', async (req, res) => {
   try {
     const { name, email, message } = req.body;
@@ -118,7 +131,26 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
+// File upload route
+app.post('/upload', upload.single('file'), async (req, res) => {
+  const file = req.file;
+  if (!file) {
+    return res.status(400).json({ message: 'No file uploaded' });
+  }
+
+  // Save file information to the database
+  const newFile = new File({
+    filename: file.filename,
+    url: `/uploads/${file.filename}`,
+    type: file.mimetype,
+  });
+
+  await newFile.save();
+
+  res.status(200).json({ file: { url: newFile.url, type: newFile.type } });
+});
 
 // Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});

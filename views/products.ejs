@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products</title>
+  <link rel="stylesheet" href="/css/products.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" id="search" placeholder="Search for products...">
+      <button onclick="searchProducts()">Search</button>
+    </div>
+
+    <!-- Product Section -->
+    <div class="product-section">
+      <h2>Products</h2>
+      <div id="products">
+        <!-- Products will be rendered here -->
+        <% products.forEach(product => { %>
+          <div class="product-item">
+            <h3><%= product.name %></h3>
+            <p>Price: $<%= product.price %></p>
+            <p><%= product.description %></p>
+            <button onclick="addToCart('<%= product._id %>')">Add to Cart</button>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+
+    <!-- Cart Section -->
+    <div class="cart-section">
+      <h2>Cart</h2>
+      <div id="cart">
+        <!-- Cart items will be rendered here -->
+      </div>
+    </div>
+
+    <!-- Upload Section -->
+    <div class="upload-section">
+      <h2>Upload Photo/Video</h2>
+      <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" id="fileInput" name="file" accept="image/*,video/*" required>
+        <button type="submit">Upload</button>
+      </form>
+      <div id="uploadedFiles">
+        <!-- Uploaded files will be rendered here -->
+        <% files.forEach(file => { %>
+          <div class="uploaded-file">
+            <% if (file.type.startsWith('image/')) { %>
+              <img src="<%= file.url %>" alt="Uploaded Image">
+            <% } else if (file.type.startsWith('video/')) { %>
+              <video controls src="<%= file.url %>"></video>
+            <% } %>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Function to handle search
+    function searchProducts() {
+      const query = document.getElementById('search').value;
+      // Implement search functionality here
+      console.log('Searching for:', query);
+    }
+
+    // Function to handle file upload
+    document.getElementById('uploadForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      const formData = new FormData();
+      formData.append('file', document.getElementById('fileInput').files[0]);
+
+      try {
+        const response = await fetch('/upload', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          renderUploadedFile(result.file);
+        } else {
+          alert('Failed to upload file.');
+        }
+      } catch (error) {
+        console.error('Error uploading file:', error);
+        alert('An error occurred. Please try again.');
+      }
+    });
+
+    // Function to render uploaded file
+    function renderUploadedFile(file) {
+      const uploadedFilesDiv = document.getElementById('uploadedFiles');
+      const fileElement = document.createElement('div');
+      fileElement.className = 'uploaded-file';
+
+      if (file.type.startsWith('image/')) {
+        fileElement.innerHTML = `<img src="${file.url}" alt="Uploaded Image">`;
+      } else if (file.type.startsWith('video/')) {
+        fileElement.innerHTML = `<video controls src="${file.url}"></video>`;
+      }
+
+      uploadedFilesDiv.appendChild(fileElement);
+    }
+
+    // Function to add product to cart
+    function addToCart(productId) {
+      // Implement add to cart functionality here
+      console.log('Adding product to cart:', productId);
+    }
+  </script>
+</body>
+</html>
