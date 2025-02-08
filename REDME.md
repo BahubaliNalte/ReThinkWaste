@@ -1,10 +1,9 @@
-npm init -y
+# HOW TO RUN THE WEBSITE
 
--install node modules
-npm install express mongoose bcryptjs jsonwebtoken cors dotenv cookie-parser ejs nodemon
-
--connect local db
-MONGO_URI=mongodb://localhost:27017/ReThinkWaste
-
--jwt secret
-JWT_SECRET=mysecretkey
+1.npm init -y
+2.install node modules
+    npm i bcryptjs body-parser cookie-parser cors dotenv ejs express express-session jsonwebtoken mongoose multer 
+3.connect local db
+    MONGO_URI=mongodb://localhost:27017/ReThinkWaste
+4.jwt secret
+    JWT_SECRET=mysecretkey
