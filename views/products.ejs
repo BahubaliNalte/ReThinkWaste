@@ -30,7 +30,7 @@
           <div class="product-item" data-name="<%= product.name.toLowerCase() %>">
             <img src="<%= product.imageUrl %>" alt="<%= product.name %>">
             <h3><%= product.name %></h3>
-            <p>Price: $<%= product.price %></p>
+            <p>Price: ₹<%= product.price %></p>
             <p><%= product.description %></p>
             <button onclick="addToCart('<%= product._id %>', '<%= product.name %>', '<%= product.price %>')">Add to Cart</button>
           </div>
