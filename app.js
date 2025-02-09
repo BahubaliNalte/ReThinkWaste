@@ -85,6 +85,17 @@ app.get('/pickup', (req, res) => {
   res.render('pickup');
 });
 
+// Route to render dataRender page
+app.get('/dataRender', async (req, res) => {
+  try {
+    const pickups = await Pickup.find(); // Fetch pickup data from the database
+    res.render('dataRender', { pickups }); // Pass pickup data to the template
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error', error });
+  }
+});
+
 // Pickup Route
 app.post('/api/pickup', async (req, res) => {
   try {

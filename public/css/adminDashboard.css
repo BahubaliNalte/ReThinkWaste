@@ -30,7 +30,7 @@ body {
 /* Header Styling */
 h1 {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   font-size: 32px;
   color: #333;
 }
@@ -189,4 +189,17 @@ h1 {
 
 .order-list tr:hover td {
   background-color: #f1f1f1;
+}
+
+.section-title {
+  display: flex ;
+  justify-content: space-around;
+  background-color:  #8e44ad;
+  padding: 5px;
+  margin: 10px;
+  color: white; 
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: lighter;
+  transition: background-color 0.3s ease;
 }

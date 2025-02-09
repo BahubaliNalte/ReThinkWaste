@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pickup Data</title>
+  <link rel="stylesheet" href="/css/adminDashboard.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Pickup Data</h1>
+    <div class="pickup-list">
+      <h2>Pickups</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Address</th>
+            <th>Notes</th>
+            <th>Waste Type</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% pickups.forEach(pickup => { %>
+            <tr>
+              <td><%= pickup.name %></td>
+              <td><%= pickup.email %></td>
+              <td><%= pickup.phone %></td>
+              <td><%= pickup.datePickup %></td>
+              <td><%= pickup.timePickup %></td>
+              <td><%= pickup.addressPickup %></td>
+              <td><%= pickup.extraNotes %></td>
+              <td><%= pickup.wasteType %></td>
+              <td><%= pickup.quantity %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
