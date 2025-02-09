@@ -60,7 +60,7 @@ function addToCart(productId, productName, productPrice) {
     cartItem.setAttribute('data-id', productId);
     cartItem.innerHTML = `
         <h3>${productName}</h3>
-        <p>Price: $${productPrice}</p>
+        <p>Price: ₹${productPrice}</p>
         <label for="quantity-${productId}">Quantity:</label>
         <input type="number" id="quantity-${productId}" name="quantity" min="1" value="1">
         <button onclick="removeFromCart('${productId}')">Remove</button>
