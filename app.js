@@ -89,7 +89,8 @@ app.get('/pickup', (req, res) => {
 app.get('/dataRender', async (req, res) => {
   try {
     const pickups = await Pickup.find(); // Fetch pickup data from the database
-    res.render('dataRender', { pickups }); // Pass pickup data to the template
+    const feedbacks = await Contact.find(); // Fetch feedback data from the database
+    res.render('dataRender', { pickups, feedbacks }); // Pass both data to the template
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error', error });
