@@ -160,9 +160,10 @@ function buyNow() {
 
 // Function to apply coupon
 function applyCoupon() {
-    const couponCode = document.getElementById('couponCode').value;
-    // Add your coupon validation and discount logic here
-    if (couponCode === 'DISCOUNT25') {
+    const enteredCode = document.getElementById('couponCode').value;
+    const storedCouponCode = localStorage.getItem('couponCode'); // Retrieve coupon code from local storage
+
+    if (enteredCode === storedCouponCode) {
         // Example: Apply a 25% discount
         const totalPriceElement = document.getElementById('totalPrice');
         let totalPrice = parseFloat(totalPriceElement.textContent.replace('Total Price: ₹', ''));

@@ -1,4 +1,4 @@
-      // Get the modal
+// Get the modal
       var modal = document.getElementById("myModal");
 
       // Get the button that opens the modal
@@ -41,6 +41,15 @@ document.querySelector('.schedule-pickup-form').addEventListener('submit', async
         quantity: document.querySelector('.quantity').value,
     };
 
+    function generateCouponCode() {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let couponCode = '';
+        for (let i = 0; i < 10; i++) {
+            couponCode += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        return couponCode;
+    }
+
     try {
         const response = await fetch('http://localhost:3000/api/pickup', {
             method: 'POST',
@@ -52,7 +61,9 @@ document.querySelector('.schedule-pickup-form').addEventListener('submit', async
 
         if (response.ok) {
             const result = await response.json();
-            alert('Pickup scheduled successfully! \nCongratulation you got coupan code "DISCOUNT25" ');
+            const couponCode = generateCouponCode();
+            localStorage.setItem('couponCode', couponCode); // Store coupon code in local storage
+            alert(`Pickup scheduled successfully! \nCongratulations! You got a coupon code "${couponCode}" valid for a 25% discount in our store.`);
         } else {
             alert('Failed to schedule pickup.');
         }
