@@ -58,15 +58,17 @@ function addToCart(productId, productName, productPrice) {
     const cartItem = document.createElement('div');
     cartItem.className = 'cart-item';
     cartItem.setAttribute('data-id', productId);
+    cartItem.setAttribute('data-price', productPrice);
     cartItem.innerHTML = `
         <h3>${productName}</h3>
         <p>Price: ₹${productPrice}</p>
         <label for="quantity-${productId}">Quantity:</label>
-        <input type="number" id="quantity-${productId}" name="quantity" min="1" value="1">
+        <input type="number" id="quantity-${productId}" name="quantity" min="1" value="1" onchange="updateTotalPrice()">
         <button onclick="removeFromCart('${productId}')">Remove</button>
       `;
     cart.appendChild(cartItem);
     document.getElementById('buyButton').style.display = 'block';
+    updateTotalPrice();
 }
 
 // Function to remove product from cart
@@ -78,6 +80,21 @@ function removeFromCart(productId) {
     if (document.querySelectorAll('.cart-item').length === 0) {
         document.getElementById('buyButton').style.display = 'none';
     }
+    updateTotalPrice();
+}
+
+// Function to update total price
+function updateTotalPrice() {
+    const cartItems = document.querySelectorAll('.cart-item');
+    let totalPrice = 0;
+
+    cartItems.forEach(item => {
+        const price = parseFloat(item.getAttribute('data-price'));
+        const quantity = parseInt(item.querySelector('input[name="quantity"]').value);
+        totalPrice += price * quantity;
+    });
+
+    document.getElementById('totalPrice').innerText = `Total Price: ₹${totalPrice.toFixed(2)}`;
 }
 
 // Function to open buy popup
