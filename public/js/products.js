@@ -157,3 +157,20 @@ function buyNow() {
             alert('An error occurred. Please try again.');
         });
 }
+
+// Function to apply coupon
+function applyCoupon() {
+    const couponCode = document.getElementById('couponCode').value;
+    // Add your coupon validation and discount logic here
+    if (couponCode === 'DISCOUNT25') {
+        // Example: Apply a 25% discount
+        const totalPriceElement = document.getElementById('totalPrice');
+        let totalPrice = parseFloat(totalPriceElement.textContent.replace('Total Price: ₹', ''));
+        const discount = totalPrice * 0.25;
+        totalPrice -= discount;
+        totalPriceElement.textContent = `Total Price: ₹${totalPrice.toFixed(2)}`;
+        alert('Coupon applied successfully!');
+    } else {
+        alert('Invalid coupon code.');
+    }
+}
