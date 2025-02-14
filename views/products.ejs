@@ -44,12 +44,16 @@
       <div id="cart">
         <!-- Cart items will be rendered here -->
       </div>
-      <p id="totalPrice">Total Price: ₹0.00</p>
-      <div class="coupon-section">
+      <p style="display: flex; justify-content: center;" id="totalPrice">Total Price: ₹0.00</p>
+      <div class="coupon-section" style="display: flex; justify-content: center;">
         <input type="text" id="couponCode" placeholder="Enter coupon code">
         <button onclick="applyCoupon()">Apply Coupon</button>
+      </div >
+
+      <div style="display: flex; justify-content: center; margin-top: 7px;"  >
+        <button id="buyButton" onclick="openBuyPopup()" style="display: none; align-items: center;">Buy</button>
       </div>
-      <button id="buyButton" onclick="openBuyPopup()" style="display: none;">Buy</button>
+
     </div>
 
     <!-- Upload Section -->
