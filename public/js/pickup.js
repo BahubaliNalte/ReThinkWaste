@@ -52,7 +52,7 @@ document.querySelector('.schedule-pickup-form').addEventListener('submit', async
 
         if (response.ok) {
             const result = await response.json();
-            alert('Pickup scheduled successfully!');
+            alert('Pickup scheduled successfully! \nCongratulation you got coupan code "DISCOUNT25" ');
         } else {
             alert('Failed to schedule pickup.');
         }
