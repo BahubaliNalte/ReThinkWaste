@@ -167,39 +167,19 @@ h1 {
   background-color: #f1f1f1;
 }
 
-.order-list th,
-.order-list td {
-  padding: 12px;
-  border: 1px solid #ddd;
-  text-align: left;
-}
-
-.order-list th {
-  background-color: #f4f4f4;
-  font-weight: bold;
-}
-
-.order-list td {
-  background-color: #fff;
-}
-
-.order-list tr:nth-child(even) td {
-  background-color: #f9f9f9;
-}
-
-.order-list tr:hover td {
-  background-color: #f1f1f1;
-}
-
 .section-title {
-  display: flex ;
+  display: flex;
   justify-content: space-around;
-  background-color:  #8e44ad;
+  background-color: #8e44ad;
   padding: 5px;
   margin: 10px;
-  color: white; 
+  color: white;
   font-size: 16px;
   cursor: pointer;
   font-weight: lighter;
   transition: background-color 0.3s ease;
+}
+
+.section-title:hover {
+  background-color: #7d3c98;
 }
