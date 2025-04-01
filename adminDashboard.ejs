@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/adminDashboard.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Admin Dashboard</h1>
+    <div class="section-title">
+      <h5><a href="/admin">Product Data</a></h5>
+      <h5><a href="/dataRender">Forms Data</a></h5>
+    </div>   
+    <div class="product-form">
+      <h2>Add/Edit Product</h2>
+      <form id="productForm" enctype="multipart/form-data">
+        <input type="hidden" id="productId" name="productId">
+        <input type="text" id="productName" name="name" placeholder="Product Name" required>
+        <input type="number" id="productPrice" name="price" placeholder="Product Price" required>
+        <textarea id="productDescription" name="description" placeholder="Product Maker" required></textarea>
+        <input type="file" id="productImage" name="image" accept="image/*" required>
+        <button type="submit">Save Product</button>
+      </form>
+    </div>
+    <div class="product-list">
+      <h2>Products</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Product Maker</th>
+            <th>Image</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="productTableBody">
+          <!-- Products will be rendered here -->
+        </tbody>
+      </table>
+    </div>
+    <div class="order-list">
+      <h2>Orders</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Payment</th>
+            <th>Cart</th>
+          </tr>
+        </thead>
+        <tbody id="orderTableBody">
+          <!-- Orders will be rendered here -->
+        </tbody>
+      </table>
+    </div>
+    <div class="product-requests">
+      <h2>Product Requests</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Maker</th>
+            <th>Image</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="productRequestTableBody">
+          <!-- Product requests will be rendered here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="/js/adminDashboard.js"></script>
+  <script>
+    async function loadProductRequests() {
+      const response = await fetch('/api/product-requests');
+      const requests = await response.json();
+      const tableBody = document.getElementById('productRequestTableBody');
+      tableBody.innerHTML = '';
+
+      requests.forEach(request => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${request.name}</td>
+          <td>${request.price}</td>
+          <td>${request.maker}</td>
+          <td><img src="${request.imageUrl}" alt="${request.name}" width="100"></td>
+          <td>
+            <button onclick="approveRequest('${request._id}')">Approve</button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    async function approveRequest(requestId) {
+      const response = await fetch(`/api/product-requests/${requestId}/approve`, { method: 'POST' });
+      if (response.ok) {
+        alert('Product approved successfully!');
+        loadProductRequests();
+        loadProducts(); // Reload products
+      } else {
+        alert('Failed to approve product.');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadProductRequests);
+  </script>
+</body>
+</html>

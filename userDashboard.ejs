@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="/css/userhome.css" />
+  <link rel="stylesheet" href="/css/ourservices.css" />
+  <link rel="stylesheet" href="/css/about-us.css" />
+  <link rel="stylesheet" href="/css/contact.css" />
+  <!-- Include Anime.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+</head>
+
+<body>
+
+  <!-- homepage screen -->
+  <section id="one">
+
+    <!-- left part (animation) of homepage -->
+    <div class="left">
+      <div class="head-wrapper">
+        <h1 class="heading">
+          <span class="intro intro-1" style="color: #013F59;">3+1<span style="color: #CC1E4A;">R</span></span>
+          <span class="intro intro-2" style="color: #013F59;">for a</span>
+          <span class="intro intro-3" style="color: #013F59;">Better Future.</span>
+        </h1>
+      </div>
+      <!-- left part (buttons) of homepage -->
+      <div class="left-bottom">
+        <button class="logout" type="submit">
+          <a href="/api/auth/logout">Logout</a>
+        </button>
+      </div>
+    </div>
+
+    <!-- right part (svg) of homepage -->
+    <div class="right">
+      <img src="/assets/home-graphic.svg" alt="home image" />
+    </div>
+
+  </section>
+
+  <!-- ourservices page -->
+  <section id="two">
+    <h1 id="ourservices">Our Services</h1>
+    <div class="service-card1">
+      <div class="top-image">
+        <img src="/assets/map.svg" alt="map logo" srcset="" />
+      </div>
+      <h2>Products</h2>
+      <p>Recycled waste products in affordable price!!!</p>
+      <button class="know-more open-button" id="know-more" type="submit">
+        <a href="/products">Click Here</a>
+      </button>
+      <h5 class="confirm" id="checkauth">
+        Please sign-in to use our services
+      </h5>
+    </div>
+    <div class="service-card">
+      <div class="top-image">
+        <img src="/assets/local_shipping.svg" alt="" />
+      </div>
+      <h2>Pickup</h2>
+      <p>Want to schedule pickup with us?</p>
+      <button class="know-more" id="know-more1" formtarget="_blank" type="submit">
+        <a href="/pickup"> Click Here</a>
+      </button>
+   </section>
+
+  <!-- about-us -->
+  <section id="three">
+    <h1 id="abt-us">About-us</h1>
+    <div class="abt-wrapper">
+      <img src="/assets/pricing.svg" alt="Pricing Image" />
+      <div class="abt-content">
+        <h3>Pricing</h3>
+        <p>
+          We offer standardized pricing in every city across all
+          commodities.Each commodity would have fixed price of it per unit.
+          The price we fix keeps in mind your satisfaction.You would be
+          informed well in advance about prices.
+        </p>
+      </div>
+    </div>
+    <div class="abt-wrapper">
+      <img src="/assets/cwa.svg" alt="Commodities Image" />
+      <div class="abt-content content-2">
+        <h3>Commodities we accept</h3>
+        <p>
+          Whether it be paper,plastic,steel or old iron we accept everything
+          that's recyclable.To be more specific we accept all paper items, all
+          cardboard items,all metal items inculding tin,and all plastic items
+          that can be recycled.
+        </p>
+      </div>
+    </div>
+    <div class="abt-wrapper">
+      <img src="/assets/wwdwyw.svg" alt="Waste Image" />
+      <div class="abt-content content-3">
+        <h3>What we do with your waste?</h3>
+        <p>
+          After collecting your waste we segregate it efficiently into dry and
+          wet waste. We then communicate and co-ordinate with all recyclable
+          industries.After that we made a good products from that.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- contact-us -->
+  <section id="four">
+    <h1 id="even-h1">Contact-us</h1>
+    <div class="contact-us">
+      <div class="cnt-img">
+        <img src="assets\contact-image.svg" alt="Connect Image" />
+      </div>
+      <form class="gform" method="POST" data-email="ucoeproject@gmail.com" name="google-sheet">
+        <div class="cnt-bx">
+          <input type="text" id="name" class="name" name="name" required="required" />
+          <span>Full Name(XYZ)</span>
+        </div>
+        <div class="cnt-bx">
+          <input type="text" id="email" class="email" name="email" required="required" />
+          <span>Email Address(xyz@email.com)</span>
+        </div>
+        <div class="cnt-bx">
+          <textarea name="message" class="message" id="message" cols="80" rows="10" required="required"></textarea>
+          <span>Comments/Suggestions/Complaints</span>
+        </div>
+        <button class="cnt-btn" type="submit" id="contact">
+          Submit
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- navbar -->
+  <nav class="navbar">
+    <div class="logobox">
+      <svg class="logo" viewbox="0 0 85 103" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M50 1H1V25C1 25 36.5 23.5 45.5 25C54.5 26.5 55 32 55 36C55 40 51.5504 46.0249 45.5 46H29V65H32.5L52.5 102.5H84L61.5 62.5C77.5976 55.9167 85.5 47.5 83 27.5C80.5 7.5 55 0.999994 50 1Z" />
+      </svg>
+    </div>
+    <div class="navlinks" id="navlinks">
+      <a class="one" href="#one">Home</a>
+      <a class="two" href="#two">Services</a>
+      <a class="three" href="#abt-us">About</a>
+      <a class="four" href="#four">Contact</a>
+    </div>
+  </nav>
+
+    <!-- Footer Section -->
+    <footer>
+      <div class="footerup">
+        <div class="logoleft">
+          <div class="flogo">
+            <svg viewbox="0 0 85 103" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M50 1H1V25C1 25 36.5 23.5 45.5 25C54.5 26.5 55 32 55 36C55 40 51.5504 46.0249 45.5 46H29V65H32.5L52.5 102.5H84L61.5 62.5C77.5976 55.9167 85.5 47.5 83 27.5C80.5 7.5 55 0.999994 50 1Z"
+                fill="#E7EAEE" />
+            </svg>
+          </div>
+          <span>3R ( Reduce, Reuse, Recycle ) + 1R ( ReThinkWaste ) for a better future
+          </span>
+        </div>
+        <div class="finfo">
+          <h3>Reach us</h3>
+          <div class="reach-us">
+            <p><img src="/assets/email.png" alt="email">
+              Email:ucoeproject@gmail.com</p>
+            <p><img src="/assets/smartphone.png" alt="phone">
+              Phone:+91 9999999999</p>
+            <p><img src="/assets/pin.png" alt="location">
+              Location:Mumbai</p>
+          </div>
+        </div>
+        <div class="quicklinks">
+          <ul>
+            <li>
+              <h3>Quicklinks</h3>
+            </li>
+            <li>About</li>
+            <li>F.A.Q</li>
+            <li>Terms & Conditions</li>
+            <li>Privacy Policy</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footerdown">
+        <div class="copyrights">
+          <p>
+            <script type="text/javascript">
+              document.write(new Date().getFullYear());
+            </script>&copy ReThinkWaste.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/js/contactus.js"></script>
+    <script src="/js/userDashboard.js"></script>
+</body>
+
+</html>
