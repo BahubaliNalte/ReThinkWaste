@@ -175,3 +175,40 @@ function applyCoupon() {
         alert('Invalid coupon code.');
     }
 }
+
+// Open and close the request popup
+function openRequestPopup() {
+  document.getElementById('requestPopup').style.display = 'block';
+}
+
+function closeRequestPopup() {
+  document.getElementById('requestPopup').style.display = 'none';
+}
+
+// Handle product request submission
+document.getElementById('requestForm').addEventListener('submit', async function (event) {
+  event.preventDefault();
+
+  const formData = new FormData();
+  formData.append('name', document.getElementById('requestName').value);
+  formData.append('price', document.getElementById('requestPrice').value);
+  formData.append('maker', document.getElementById('requestMaker').value);
+  formData.append('image', document.getElementById('requestImage').files[0]);
+
+  try {
+    const response = await fetch('/api/product-requests', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (response.ok) {
+      alert('Product request submitted successfully!');
+      closeRequestPopup();
+    } else {
+      alert('Failed to submit product request.');
+    }
+  } catch (error) {
+    console.error('Error submitting product request:', error);
+    alert('An error occurred. Please try again.');
+  }
+});
