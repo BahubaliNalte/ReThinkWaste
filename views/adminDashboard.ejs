@@ -58,8 +58,60 @@
         </tbody>
       </table>
     </div>
+    <div class="product-requests">
+      <h2>Product Requests</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Maker</th>
+            <th>Image</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="productRequestTableBody">
+          <!-- Product requests will be rendered here -->
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <script src="/js/adminDashboard.js"></script>
+  <script>
+    async function loadProductRequests() {
+      const response = await fetch('/api/product-requests');
+      const requests = await response.json();
+      const tableBody = document.getElementById('productRequestTableBody');
+      tableBody.innerHTML = '';
+
+      requests.forEach(request => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${request.name}</td>
+          <td>${request.price}</td>
+          <td>${request.maker}</td>
+          <td><img src="${request.imageUrl}" alt="${request.name}" width="100"></td>
+          <td>
+            <button onclick="approveRequest('${request._id}')">Approve</button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    async function approveRequest(requestId) {
+      const response = await fetch(`/api/product-requests/${requestId}/approve`, { method: 'POST' });
+      if (response.ok) {
+        alert('Product approved successfully!');
+        loadProductRequests();
+        loadProducts(); // Reload products
+      } else {
+        alert('Failed to approve product.');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadProductRequests);
+  </script>
 </body>
 </html>
