@@ -183,3 +183,52 @@ h1 {
 .section-title:hover {
   background-color: #7d3c98;
 }
+
+/* Style for the Product Requests section */
+.product-requests {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.product-requests h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.product-requests table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-requests th, .product-requests td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.product-requests th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+.product-requests td img {
+  max-width: 100px;
+  border-radius: 4px;
+}
+
+.product-requests button {
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.product-requests button:hover {
+  background-color: #45a049;
+}
