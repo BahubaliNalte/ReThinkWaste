@@ -1,0 +1,234 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  color: #333;
+}
+
+/* Container Styling */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styling */
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 32px;
+  color: #333;
+}
+
+/* Product Form Styling */
+.product-form {
+  margin-bottom: 40px;
+}
+
+.product-form h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.product-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-form input,
+.product-form textarea {
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.product-form input:focus,
+.product-form textarea:focus {
+  border-color: #9b59b6;
+  box-shadow: 0 0 8px rgba(155, 89, 182, 0.2);
+}
+
+.product-form button {
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #9b59b6;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-form button:hover {
+  background-color: #8e44ad;
+}
+
+/* Product List Styling */
+.product-list h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.product-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-list th,
+.product-list td {
+  padding: 12px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.product-list th {
+  background-color: #f4f4f4;
+}
+
+.product-list img {
+  width: 100px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.product-list button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #e74c3c;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-list button:hover {
+  background-color: #c0392b;
+}
+
+/* Order List Styling */
+.order-list {
+  margin-top: 40px;
+}
+
+.order-list h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.order-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.order-list th,
+.order-list td {
+  padding: 12px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.order-list th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.order-list td {
+  background-color: #fff;
+}
+
+.order-list tr:nth-child(even) td {
+  background-color: #f9f9f9;
+}
+
+.order-list tr:hover td {
+  background-color: #f1f1f1;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-around;
+  background-color: #8e44ad;
+  padding: 5px;
+  margin: 10px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: lighter;
+  transition: background-color 0.3s ease;
+}
+
+.section-title:hover {
+  background-color: #7d3c98;
+}
+
+/* Style for the Product Requests section */
+.product-requests {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.product-requests h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.product-requests table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-requests th, .product-requests td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.product-requests th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+.product-requests td img {
+  max-width: 100px;
+  border-radius: 4px;
+}
+
+.product-requests button {
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.product-requests button:hover {
+  background-color: #45a049;
+}
